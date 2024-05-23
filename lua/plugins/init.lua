@@ -20,8 +20,8 @@ return {
   	opts = {
   		ensure_installed = {
   			"lua-language-server", "stylua",
-  			"html-lsp", "css-lsp" , "prettier", 
-        "typescript-language-server"
+  			"html-lsp", "css-lsp" , "prettier", "prettier_d" 
+        "typescript-language-server", "eslint_d"
   		},
   	},
   },
