@@ -17,7 +17,7 @@ local lazy_config = require "configs.lazy"
 ---@diagnostic disable-next-line: different-requires
 require("lazy").setup({
   {
-    "NvChad/NvChad",
+    "Solly922/NvChad",
     lazy = false,
     branch = "v2.5",
     import = "nvchad.plugins",
