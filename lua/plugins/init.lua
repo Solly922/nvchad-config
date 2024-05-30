@@ -15,22 +15,6 @@ return {
     end,
   },
 
-  -- {
-  --   "mhartington/formatter.nvim",
-  --   event = "VeryLazy",
-  --   opts = function()
-  --     require "custom.configs.formatter"
-  --   end,
-  -- },
-  --
-  -- {
-  --   "mfussenegger/nvim-lint",
-  --   event = "VeryLazy",
-  --   config = function()
-  --     require "custom.configs.lint"
-  --   end,
-  -- },
-
   {
     "williamboman/mason.nvim",
     opts = {
