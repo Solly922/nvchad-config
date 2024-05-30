@@ -15,6 +15,22 @@ return {
     end,
   },
 
+  -- {
+  --   "mhartington/formatter.nvim",
+  --   event = "VeryLazy",
+  --   opts = function()
+  --     require "custom.configs.formatter"
+  --   end,
+  -- },
+  --
+  -- {
+  --   "mfussenegger/nvim-lint",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require "custom.configs.lint"
+  --   end,
+  -- },
+
   {
     "williamboman/mason.nvim",
     opts = {
@@ -27,7 +43,7 @@ return {
         "html-lsp",
         "css-lsp",
         "prettier",
-        "prettier_d",
+        "prettierd",
         "typescript-language-server",
         "eslint_d",
 
@@ -46,8 +62,14 @@ return {
         "vim",
         "lua",
         "vimdoc",
+
         "html",
         "css",
+        "javascript",
+        "typescript",
+        "tsx",
+
+        "go",
       },
     },
   },

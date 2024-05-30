@@ -4,3 +4,7 @@ require "nvchad.options"
 
 local o = vim.o
 o.cursorlineopt = "both" -- to enable cursorline!
+o.linebreak = true
+
+vim.opt.relativenumber = true
+vim.opt.tabstop = 2
