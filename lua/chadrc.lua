@@ -6,6 +6,9 @@ local M = {}
 
 M.ui = {
   theme = "catppuccin",
+  statusline = {
+    theme = "default",
+  },
   nvdash = {
     load_on_startup = true,
   },
