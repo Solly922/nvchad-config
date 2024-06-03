@@ -7,6 +7,8 @@ local lspconfig = require "lspconfig"
 local servers = {
   "html",
   "cssls",
+  "tailwindcss",
+  "eslint",
   "gopls",
 }
 
