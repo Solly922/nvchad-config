@@ -8,6 +8,14 @@ return {
   },
 
   {
+    "mfussenegger/nvim-lint",
+    event = "VeryLazy",
+    config = function()
+      require "configs.nvim-lint"
+    end,
+  },
+
+  {
     "neovim/nvim-lspconfig",
     config = function()
       require("nvchad.configs.lspconfig").defaults()
@@ -64,5 +72,15 @@ return {
         "go",
       },
     },
+  },
+
+  {
+    "RRethy/vim-illuminate",
+    cmd = { "IlluminateToggle", "IlluminateResume" },
+    config = function()
+      require "configs.illuminate"
+    end,
+    event = "User FileOpened",
+    enabled = true,
   },
 }
