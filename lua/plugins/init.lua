@@ -14,16 +14,43 @@ return {
     end,
   },
 
+  {
+    "williamboman/mason.nvim",
+    options = {
+      ensure_installed = {
+        -- lua
+        "lua-language-server",
+        "stylua",
+
+        -- web dev
+        "html-lsp",
+        "cssls",
+        "eslint-lsp",
+        "eslint_d",
+        "prettier",
+        "prettierd",
+        "typescript-language-server",
+        "tailwindcss-language-server",
+        "rustywind",
+
+        -- golang
+        "gofumpt",
+        "goimports",
+        "gopls",
+        "golangci-lint-langserver",
+      },
+    }
+  },
 
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
   {
-  	"nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile"},
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-  	opts = function()
-      return require "plugins.configs.treesitter"
+    opts = function()
+      return require "configs.treesitter"
     end,
     config = function(_, opts)
       require "nvim-treesitter.configs".setup(opts)
@@ -43,7 +70,7 @@ return {
       vim.cmd.GoInstallDeps()
     end,
     config = function()
-      require("plugins.configs.gopher").setup()
+      require("configs.gopher").setup()
     end,
     --@type gopher.Config
     opts = {},

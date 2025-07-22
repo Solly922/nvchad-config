@@ -12,5 +12,7 @@ local options = {
     use_languagetree = true,
   },
 
-  indent = {enable = true},
+  indent = { enable = true },
 }
+
+return options
