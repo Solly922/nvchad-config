@@ -2,7 +2,7 @@ return {
 
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -39,7 +39,13 @@ return {
         "gopls",
         "golangci-lint-langserver",
       },
-    }
+    },
+  },
+
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
   },
 
   -- test new blink
@@ -53,8 +59,8 @@ return {
       return require "configs.treesitter"
     end,
     config = function(_, opts)
-      require "nvim-treesitter.configs".setup(opts)
-    end
+      require("nvim-treesitter.configs").setup(opts)
+    end,
   },
 
   -- Go

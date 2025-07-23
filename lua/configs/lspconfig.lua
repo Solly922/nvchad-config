@@ -1,37 +1,38 @@
 require("nvchad.configs.lspconfig").defaults()
-local defaults = require "nvchad.configs.lspconfig"
+require "configs.typescript-tools"
 
 local servers = {
   html = {},
   cssls = {},
   tailwindcss = {},
-  tsserver = {
-    cmd = { "typescript-language-server", "--stdio" },
-    settings = {
-      typescript = {
-        format = {
-          insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true,
-          insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces = true,
-        },
-      },
-      javascript = {
-        format = {
-          insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true,
-          insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces = true,
-        },
-      },
-    },
-    filetypes = {
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-    },
-  },
+  -- tsserver = {
+  --   cmd = { "typescript-language-server", "--stdio" },
+  --   settings = {
+  --     typescript = {
+  --       format = {
+  --         insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true,
+  --         insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces = true,
+  --       },
+  --     },
+  --     javascript = {
+  --       format = {
+  --         insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true,
+  --         insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces = true,
+  --       },
+  --     },
+  --   },
+  --   filetypes = {
+  --     "javascript",
+  --     "javascriptreact",
+  --     "typescript",
+  --     "typescriptreact",
+  --   },
+  -- },
   eslint = {},
   eslint_d = {},
   prettier = {},
   prettier_d = {},
+  typescript_tools = {},
 
   golangci_lint_ls = {},
   gopls = {
