@@ -1,26 +1,37 @@
 require("nvchad.configs.lspconfig").defaults()
-
-local function organize_imports()
-  local params = {
-    command = "typescript.organizeImports",
-    arguments = { vim.api.nvim_buf_get_name },
-  }
-
-  return params
-end
+local defaults = require "nvchad.configs.lspconfig"
 
 local servers = {
   html = {},
   cssls = {},
   tailwindcss = {},
   tsserver = {
-    command = {
-      OrganizeImports = {
-        organize_imports,
-        description = "Organize imports in TypeScript files",
-      }
-    }
+    cmd = { "typescript-language-server", "--stdio" },
+    settings = {
+      typescript = {
+        format = {
+          insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true,
+          insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces = true,
+        },
+      },
+      javascript = {
+        format = {
+          insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = true,
+          insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces = true,
+        },
+      },
+    },
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+    },
   },
+  eslint = {},
+  eslint_d = {},
+  prettier = {},
+  prettier_d = {},
 
   golangci_lint_ls = {},
   gopls = {
@@ -33,10 +44,10 @@ local servers = {
           gc_details = true,
           test = true,
           tidy = true,
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 }
 
 for name, opts in pairs(servers) do
