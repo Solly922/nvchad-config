@@ -1,5 +1,4 @@
 return {
-
   {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- uncomment for format on save
@@ -122,7 +121,16 @@ return {
 
   {
     "RRethy/vim-illuminate",
-    event = "User FileOpened",
+    event = { "BufReadPost", "BufNewFile" },
     enabled = true,
+    config = function()
+      require("illuminate").configure {
+        providers = { "lsp", "treesitter", "regex" },
+        under_cursor = true,
+        should_enable = function(_)
+          return true
+        end,
+      }
+    end,
   },
 }

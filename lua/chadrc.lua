@@ -8,21 +8,22 @@ local M = {}
 M.base46 = {
   theme = "sweetpastel",
 
-  -- hl_override = {
-  -- 	Comment = { italic = true },
-  -- 	["@comment"] = { italic = true },
-  -- },
+  hl_override = {
+    Comment = { italic = true },
+    ["@comment"] = { italic = true },
+  },
 }
 
 M.nvdash = { load_on_startup = true }
 M.ui = {
   tabufline = {
-    lazyload = false
+    lazyload = false,
   },
   lsp_semantic_tokens = true,
   statusline = {
-    theme = "vscode_colored",
-  }
+    theme = "default",
+    separator_style = "round",
+  },
 }
 
 return M
