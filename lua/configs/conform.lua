@@ -80,6 +80,16 @@ local options = {
     go = { "gofumpt", "goimports" },
   },
 
+  -- Configure formatters
+  formatters = {
+    prettierd = {
+      prepend_args = { "--single-attribute-per-line" },
+    },
+    prettier = {
+      prepend_args = { "--single-attribute-per-line" },
+    },
+  },
+
   format_on_save = {
     -- These options will be passed to conform.format()
     timeout_ms = 500,
