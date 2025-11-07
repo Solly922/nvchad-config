@@ -13,8 +13,12 @@ local function has_eslint_config()
   }
 
   -- Find root directory by looking for package.json or git root
-  local root_dir = vim.fs.dirname(vim.fs.find({ "package.json", ".git" }, { upward = true })[1])
+  local found = vim.fs.find({ "package.json", ".git" }, { upward = true })
+  if not found or #found == 0 then
+    return false
+  end
   
+  local root_dir = vim.fs.dirname(found[1])
   if not root_dir then
     return false
   end
@@ -33,7 +37,8 @@ local function has_eslint_config()
     if ok then
       local json_str = table.concat(content, "\n")
       -- Check for eslint in dependencies or devDependencies
-      if json_str:match('"eslint"') then
+      -- Pattern matches "eslint": to avoid false positives
+      if json_str:match('"eslint"%s*:') then
         return true
       end
     end
@@ -52,6 +57,16 @@ local function get_js_formatters()
   end
 end
 
+-- Function to determine formatters for React files
+local function get_react_formatters()
+  if has_eslint_config() then
+    -- Use ESLint for formatting/fixing, then rustywind for Tailwind classes
+    return { { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true }, "rustywind" }
+  else
+    return { "prettierd", "rustywind", "prettier" }
+  end
+end
+
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
@@ -59,22 +74,8 @@ local options = {
     html = { "prettierd", "prettier", stop_after_first = true },
     javascript = get_js_formatters,
     typescript = get_js_formatters,
-    javascriptreact = function()
-      if has_eslint_config() then
-        -- Use ESLint for formatting/fixing, then rustywind for Tailwind classes
-        return { { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true }, "rustywind" }
-      else
-        return { "prettierd", "rustywind", "prettier" }
-      end
-    end,
-    typescriptreact = function()
-      if has_eslint_config() then
-        -- Use ESLint for formatting/fixing, then rustywind for Tailwind classes
-        return { { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true }, "rustywind" }
-      else
-        return { "prettierd", "rustywind", "prettier" }
-      end
-    end,
+    javascriptreact = get_react_formatters,
+    typescriptreact = get_react_formatters,
 
     go = { "gofumpt", "goimports" },
   },
