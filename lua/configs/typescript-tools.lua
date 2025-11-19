@@ -2,8 +2,18 @@ local defaults = require "nvchad.configs.lspconfig"
 
 -- Helper function to check if we're in a Deno project
 local function is_deno_project(fname)
+  -- Check for deno.json or deno.jsonc
   local root_dir = vim.fs.dirname(vim.fs.find({ "deno.json", "deno.jsonc" }, { upward = true, path = fname })[1])
-  return root_dir ~= nil
+  if root_dir then
+    return true
+  end
+
+  -- Check if we're in a Supabase edge functions directory
+  if fname:match "supabase/functions/" then
+    return true
+  end
+
+  return false
 end
 
 require("typescript-tools").setup {
