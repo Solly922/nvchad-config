@@ -1,7 +1,25 @@
 local defaults = require "nvchad.configs.lspconfig"
 
+-- Helper function to check if we're in a Deno project
+local function is_deno_project(fname)
+  local root_dir = vim.fs.dirname(vim.fs.find({ "deno.json", "deno.jsonc" }, { upward = true, path = fname })[1])
+  return root_dir ~= nil
+end
+
 require("typescript-tools").setup {
-  on_attach = defaults.on_attach,
+  on_attach = function(client, bufnr)
+    -- Don't attach if we're in a Deno project
+    local bufname = vim.api.nvim_buf_get_name(bufnr)
+    if is_deno_project(bufname) then
+      vim.schedule(function()
+        vim.lsp.buf_detach_client(bufnr, client.id)
+      end)
+      return
+    end
+
+    -- Otherwise, use default on_attach
+    defaults.on_attach(client, bufnr)
+  end,
   settings = {
     -- spawn additional tsserver instance to calculate diagnostics on it
     separate_diagnostic_server = true,

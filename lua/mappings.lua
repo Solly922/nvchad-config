@@ -27,11 +27,8 @@ vim.keymap.del("n", "<leader>e")
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle" })
 
 map("n", "gl", function()
-    vim.diagnostic.open_float { border = "rounded" }
-  end,
-  { desc = "Floating diagnostic" }
-)
-
+  vim.diagnostic.open_float { border = "rounded" }
+end, { desc = "Floating diagnostic" })
 
 map("i", "<C-H>", "<C-W>")
 
