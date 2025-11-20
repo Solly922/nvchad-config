@@ -61,9 +61,11 @@ end
 local function get_react_formatters()
   if has_eslint_config() then
     -- Use ESLint for formatting/fixing, then rustywind for Tailwind classes
-    return { { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true }, "rustywind" }
+    -- return { { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true }, "rustywind" }
+    return { "eslint_d", "rustywind" }
   else
-    return { "prettierd", "rustywind", "prettier" }
+    return { "prettierd", "rustywind" }
+    -- return { "prettierd", "rustywind", "prettier" }
   end
 end
 
