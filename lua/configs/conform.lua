@@ -60,10 +60,11 @@ end
 -- Function to determine formatters for React files
 local function get_react_formatters()
   if has_eslint_config() then
-    -- Try eslint_d first (faster), then eslint, then fall back to prettier
-    return { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true }
+    -- Use ESLint for formatting/fixing, then rustywind for Tailwind classes
+    -- Without stop_after_first, formatters run in sequence
+    return { "eslint_d", "rustywind" }
   else
-    return { "prettierd", "prettier", stop_after_first = true }
+    return { "prettierd", "rustywind" }
   end
 end
 
