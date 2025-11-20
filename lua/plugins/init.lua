@@ -31,6 +31,7 @@ return {
         "typescript-language-server",
         "tailwindcss-language-server",
         "rustywind",
+        "deno",
 
         -- golang
         "gofumpt",

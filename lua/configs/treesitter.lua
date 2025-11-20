@@ -1,10 +1,16 @@
 local options = {
   ensure_installed = {
-    "lua", "vim", "vimdoc",
-    "html", "css",
-    "javascript", "typescript", "jsdoc",
-    "go", "gotmpl",
-    "php"
+    "lua",
+    "vim",
+    "vimdoc",
+    "html",
+    "css",
+    "javascript",
+    "typescript",
+    "jsdoc",
+    "go",
+    "gotmpl",
+    "php",
   },
 
   highlight = {

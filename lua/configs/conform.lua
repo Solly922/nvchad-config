@@ -17,7 +17,7 @@ local function has_eslint_config()
   if not found or #found == 0 then
     return false
   end
-  
+
   local root_dir = vim.fs.dirname(found[1])
   if not root_dir then
     return false
@@ -38,7 +38,7 @@ local function has_eslint_config()
       local json_str = table.concat(content, "\n")
       -- Check for eslint in dependencies or devDependencies
       -- Pattern matches "eslint": to avoid false positives
-      if json_str:match('"eslint"%s*:') then
+      if json_str:match '"eslint"%s*:' then
         return true
       end
     end
