@@ -155,4 +155,18 @@ return {
       }
     end,
   },
+
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    ft = { "markdown" },
+    --@module 'render-markdown'
+    --@type render.md.UserConfig
+    opts = {
+      render_modes = { "n", "c", "t" },
+    },
+    config = function()
+      require("render-markdown").setup()
+    end,
+  },
 }
