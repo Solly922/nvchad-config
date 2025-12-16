@@ -1,6 +1,6 @@
 require("nvchad.configs.lspconfig").defaults()
 require "configs.typescript-tools"
-require("configs.deno").setup()
+-- require("configs.deno").setup()
 
 local servers = {
   html = {},
