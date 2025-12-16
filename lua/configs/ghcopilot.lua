@@ -11,6 +11,7 @@ GHCopilot.config_vim = function()
   -- cmp.experimental.ghost_text = false
 
   vim.g.copilot_filetypes = { xml = false, markdown = false }
+  vim.g.copilot_no_tab_map = true
 
   local map = vim.api.nvim_set_keymap
   map("i", "<C-a>", "copilot#Accept('\\<CR>')", { silent = true, expr = true })
