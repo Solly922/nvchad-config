@@ -41,9 +41,7 @@ end
 local M = {}
 
 M.setup = function()
-  local lspconfig = require "lspconfig"
-
-  lspconfig.denols.setup {
+  vim.lsp.config("denols", {
     on_attach = defaults.on_attach,
     capabilities = defaults.capabilities,
     root_dir = function(fname)
@@ -63,7 +61,31 @@ M.setup = function()
         },
       },
     },
-  }
+  })
+  vim.lsp.enable "denols"
+
+  -- local lspconfig = require "lspconfig"
+  -- lspconfig.denols.setup {
+  --   on_attach = defaults.on_attach,
+  --   capabilities = defaults.capabilities,
+  --   root_dir = function(fname)
+  --     return find_deno_root(fname)
+  --   end,
+  --   init_options = {
+  --     lint = true,
+  --     unstable = true,
+  --     suggest = {
+  --       imports = {
+  --         hosts = {
+  --           ["https://deno.land"] = true,
+  --           ["https://cdn.nest.land"] = true,
+  --           ["https://crux.land"] = true,
+  --           ["https://esm.sh"] = true,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- }
 end
 
 return M
