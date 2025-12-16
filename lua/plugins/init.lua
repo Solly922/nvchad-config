@@ -88,9 +88,30 @@ return {
     "github/copilot.vim",
     cmd = "Copilot",
     config = function()
-      require("configs.copilot").config_vim()
+      require("configs.ghcopilot").config_vim()
     end,
     event = "BufEnter",
+  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   requires = {
+  --     "copilotlsp-nvim/copilot-lsp",
+  --     init = function()
+  --       vim.g.copilot_nes_debounce = 300
+  --     end,
+  --   },
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("configs.zbirenbaum-copilot").setup()
+  --   end,
+  -- },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim", branch = "master" },
+    },
+    cmd = "CopilotChat",
   },
 
   -- {

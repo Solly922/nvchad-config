@@ -1,4 +1,4 @@
-local Copilot = {}
+local GHCopilot = {}
 
 local copilot_hl_func = function()
   vim.api.nvim_set_hl(0, "CopilotSuggestion", { fg = "#888888" })
@@ -6,7 +6,7 @@ end
 
 -- Config
 --
-Copilot.config_vim = function()
+GHCopilot.config_vim = function()
   -- local cmp = require "nvim-cmp"
   -- cmp.experimental.ghost_text = false
 
@@ -20,7 +20,7 @@ Copilot.config_vim = function()
   vim.defer_fn(copilot_hl_func, 1000)
 end
 
-Copilot.config_lua = function()
+GHCopilot.config_lua = function()
   local result_ok, copilot = pcall(require, "copilot")
   if not result_ok then
     return
@@ -67,4 +67,4 @@ Copilot.config_lua = function()
   }
 end
 
-return Copilot
+return GHCopilot
