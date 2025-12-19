@@ -111,6 +111,12 @@ return {
     dependencies = {
       { "nvim-lua/plenary.nvim", branch = "master" },
     },
+    config = function()
+      require("CopilotChat").setup {
+        highlight_headers = false,
+        error_header = "> [!ERROR] Error",
+      }
+    end,
     cmd = "CopilotChat",
   },
 
@@ -159,7 +165,7 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
-    ft = { "markdown" },
+    ft = { "markdown", "copilot-chat" },
     --@module 'render-markdown'
     --@type render.md.UserConfig
     opts = {
