@@ -116,7 +116,7 @@ return {
         highlight_headers = false,
         error_header = "> [!ERROR] Error",
 
-        model = "gpt-5 mini",
+        model = "gpt-5",
       }
     end,
     cmd = "CopilotChat",
