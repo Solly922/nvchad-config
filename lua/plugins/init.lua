@@ -84,40 +84,43 @@ return {
   "leoluz/nvim-dap-go",
 
   -- AI
-  {
-    "github/copilot.vim",
-    cmd = "Copilot",
-    config = function()
-      require("configs.ghcopilot").config_vim()
-    end,
-    event = "BufEnter",
-  },
   -- {
-  --   "zbirenbaum/copilot.lua",
-  --   requires = {
-  --     "copilotlsp-nvim/copilot-lsp",
-  --     init = function()
-  --       vim.g.copilot_nes_debounce = 300
-  --     end,
-  --   },
+  --   "github/copilot.vim",
   --   cmd = "Copilot",
-  --   event = "InsertEnter",
   --   config = function()
-  --     require("configs.zbirenbaum-copilot").setup()
+  --     require("configs.ghcopilot").config_vim()
   --   end,
+  --   event = "BufEnter",
   -- },
+  {
+    "zbirenbaum/copilot.lua",
+    requires = {
+      "copilotlsp-nvim/copilot-lsp",
+      init = function()
+        vim.g.copilot_nes_debounce = 300
+      end,
+    },
+    cmd = "Copilot",
+    event = "BufEnter",
+    config = function()
+      require("configs.zbirenbaum-copilot").setup()
+    end,
+  },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
       { "nvim-lua/plenary.nvim", branch = "master" },
     },
+    -- config = function()
+    --   require("CopilotChat").setup {
+    --     highlight_headers = false,
+    --     error_header = "> [!ERROR] Error",
+    --
+    --     model = "gpt-5",
+    --   }
+    -- end,
     config = function()
-      require("CopilotChat").setup {
-        highlight_headers = false,
-        error_header = "> [!ERROR] Error",
-
-        model = "gpt-5",
-      }
+      require("configs.copilotchat").setup()
     end,
     cmd = "CopilotChat",
   },
