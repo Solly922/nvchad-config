@@ -6,10 +6,6 @@ CopilotChat.setup = function()
     return
   end
 
-  local map = vim.keymap.set
-  map("n", "<leader>cc", "<cmd>CopilotChat<cr>", { desc = "Open Copilot Chat" })
-  map("n", "<leader>cC", "<cmd>CopilotChatClose<cr>", { desc = "Close Copilot Chat" })
-
   copilot_chat.setup {
     highlight_headers = false,
     error_header = "> [!ERROR] Error",

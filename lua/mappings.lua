@@ -7,6 +7,10 @@ local map = vim.keymap.set
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
+-- Copilot Chat
+map("n", "<leader>cc", "<cmd>CopilotChat<cr>", { desc = "Open Copilot Chat" })
+map("n", "<leader>cC", "<cmd>CopilotChatClose<cr>", { desc = "Close Copilot Chat" })
+
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 map({ "n", "v" }, "<leader>q", "<cmd>q<CR>", { desc = "quit" })
 
