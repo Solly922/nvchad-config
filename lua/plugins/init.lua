@@ -122,6 +122,7 @@ return {
     config = function()
       require("configs.copilotchat").setup()
     end,
+    event = "BufEnter",
     cmd = "CopilotChat",
   },
 

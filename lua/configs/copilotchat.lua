@@ -1,17 +1,19 @@
 local CopilotChat = {}
 
 CopilotChat.setup = function()
-  local result_ok, copilot_chat = pcall(require, "copilot-chat")
-  if not result_ok then
-    return
-  end
+  print "Setting up Copilot Chat"
+  -- local result_ok, copilot_chat = pcall(require, "CopilotChat")
+  -- if not result_ok then
+  --   return
+  -- end
 
-  copilot_chat.setup {
+  require("CopilotChat").setup {
     highlight_headers = false,
     error_header = "> [!ERROR] Error",
 
-    model = "gpt-5",
+    model = "claude-opus-4.5",
   }
+  print "Copilot Chat setup complete"
 end
 
 return CopilotChat
