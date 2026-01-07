@@ -6,7 +6,7 @@ ZCopilot.setup = function()
     return
   end
   copilot.setup {
-    copilot_model = "gpt-5",
+    copilot_model = "gpt-5.1-codex",
     panel = {
       enabled = true,
       auto_refresh = true,

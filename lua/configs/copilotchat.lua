@@ -10,7 +10,7 @@ CopilotChat.setup = function()
     highlight_headers = false,
     error_header = "> [!ERROR] Error",
 
-    model = "claude-opus-4.5",
+    model = "gpt-5.1-codex",
   }
 end
 
