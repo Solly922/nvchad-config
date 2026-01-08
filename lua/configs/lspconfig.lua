@@ -50,6 +50,10 @@ local servers = {
       },
     },
   },
+
+  gh_actions_ls = {
+    workspace_required = true,
+  },
 }
 
 for name, opts in pairs(servers) do
