@@ -7,32 +7,38 @@ M.theme_map = {
   ["ethereal"] = "tokyodark", -- Ethereal doesn't have direct equivalent, using everforest as close match
   ["everforest"] = "everforest",
   ["gruvbox"] = "gruvbox",
-  ["hackerman"] = "nightlamp",   -- Hackerman doesn't have direct equivalent, using onedark as dark theme
+  ["hackerman"] = "nightlamp", -- Hackerman doesn't have direct equivalent, using onedark as dark theme
   ["osaka-jade"] = "tokyonight", -- Osaka Jade is Tokyo Night variant
   ["kanagawa"] = "kanagawa",
   ["nord"] = "nord",
-  ["matte-black"] = "onedark",         -- Matte Black doesn't have direct equivalent, using onedark
-  ["ristretto"] = "catppuccin",        -- Ristretto is Catppuccin variant
-  ["flexoki-light"] = "one_light",     -- Flexoki Light doesn't have direct equivalent, using one_light
+  ["matte-black"] = "onedark", -- Matte Black doesn't have direct equivalent, using onedark
+  ["ristretto"] = "catppuccin", -- Ristretto is Catppuccin variant
+  ["flexoki-light"] = "one_light", -- Flexoki Light doesn't have direct equivalent, using one_light
   ["rose-pine"] = "rosepine",
-  ["ratppuccin-latte"] = "catppuccin", -- Latte is Catppuccin light variant
+  ["ratppuccin-latte"] = "flex-light", -- Latte is Catppuccin light variant
 }
 
-M.theme_file = vim.fn.expand("~/.config/omarchy/current/theme.name")
+M.theme_file = vim.fn.expand "~/.config/omarchy/current/theme.name"
 
 function M.apply_theme()
   local f = io.open(M.theme_file, "r")
-  if not f then return end
+  if not f then
+    return
+  end
 
-  local omarchy_theme = f:read("*l")
+  local omarchy_theme = f:read "*l"
   f:close()
 
   local nvchad_theme = M.theme_map[omarchy_theme]
-  if not nvchad_theme then return end
+  if not nvchad_theme then
+    return
+  end
 
   -- NvChad way to change themes
   require("nvconfig").base46.theme = nvchad_theme
   require("base46").load_all_highlights()
+
+  require "plugin.after.transparency"
 end
 
 return M

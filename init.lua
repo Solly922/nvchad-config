@@ -36,8 +36,14 @@ vim.schedule(function()
   require "mappings"
 end)
 
+-- setup omarchy theme sync
+
 local uv = vim.loop
-local sync = require("omarchy_theme_sync")
+local sync = require "omarchy_theme_sync"
+if not sync then
+  vim.notify("Failed to load omarchy_theme_sync module", vim.log.levels.ERROR)
+  return
+end
 
 -- apply once on startup
 sync.apply_theme()
@@ -54,5 +60,3 @@ watcher:start(
     sync.apply_theme()
   end)
 )
-
-require("plugin.after.transparency")
