@@ -2,12 +2,20 @@ local M = {}
 
 -- map omarchy theme -> nvchad theme
 M.theme_map = {
-  ["catppuccin"] = "catppuccin",
-  ["gruvbox-dark"] = "gruvbox",
-  ["catppuccin-mocha"] = "catppuccin",
   ["tokyo-night"] = "tokyonight",
+  ["catppuccin"] = "catppuccin",
+  ["ethereal"] = "tokyodark", -- Ethereal doesn't have direct equivalent, using everforest as close match
+  ["everforest"] = "everforest",
+  ["gruvbox"] = "gruvbox",
+  ["hackerman"] = "nightlamp",   -- Hackerman doesn't have direct equivalent, using onedark as dark theme
+  ["osaka-jade"] = "tokyonight", -- Osaka Jade is Tokyo Night variant
+  ["kanagawa"] = "kanagawa",
   ["nord"] = "nord",
-  ["osaka-jade"] = "nightlamp"
+  ["matte-black"] = "onedark",         -- Matte Black doesn't have direct equivalent, using onedark
+  ["ristretto"] = "catppuccin",        -- Ristretto is Catppuccin variant
+  ["flexoki-light"] = "one_light",     -- Flexoki Light doesn't have direct equivalent, using one_light
+  ["rose-pine"] = "rosepine",
+  ["ratppuccin-latte"] = "catppuccin", -- Latte is Catppuccin light variant
 }
 
 M.theme_file = vim.fn.expand("~/.config/omarchy/current/theme.name")
