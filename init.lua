@@ -35,3 +35,24 @@ require "autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+local uv = vim.loop
+local sync = require("omarchy_theme_sync")
+
+-- apply once on startup
+sync.apply_theme()
+
+local watcher = uv.new_fs_event()
+if not watcher then
+  vim.notify("Failed to create fs_event watcher for theme sync", vim.log.levels.ERROR)
+  return
+end
+watcher:start(
+  sync.theme_file,
+  {},
+  vim.schedule_wrap(function()
+    sync.apply_theme()
+  end)
+)
+
+require("plugin.after.transparency")
