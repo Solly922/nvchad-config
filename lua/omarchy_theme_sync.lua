@@ -7,15 +7,18 @@ M.theme_map = {
   ["ethereal"] = "tokyodark", -- Ethereal doesn't have direct equivalent, using everforest as close match
   ["everforest"] = "everforest",
   ["gruvbox"] = "gruvbox",
-  ["hackerman"] = "nightlamp", -- Hackerman doesn't have direct equivalent, using onedark as dark theme
+  ["hackerman"] = "nightlamp",   -- Hackerman doesn't have direct equivalent, using onedark as dark theme
   ["osaka-jade"] = "tokyonight", -- Osaka Jade is Tokyo Night variant
   ["kanagawa"] = "kanagawa",
   ["nord"] = "nord",
-  ["matte-black"] = "onedark", -- Matte Black doesn't have direct equivalent, using onedark
+  ["matte-black"] = "onedark",  -- Matte Black doesn't have direct equivalent, using onedark
   ["ristretto"] = "catppuccin", -- Ristretto is Catppuccin variant
-  ["flexoki-light"] = "one_light", -- Flexoki Light doesn't have direct equivalent, using one_light
+  ["flexoki-light"] = "flexoki-light",
   ["rose-pine"] = "rosepine",
-  ["ratppuccin-latte"] = "flex-light", -- Latte is Catppuccin light variant
+  ["catppuccin-latte"] = "catppuccin-latte",
+  ["lowlight"] = "chocolate",
+  ["bliss"] = "seoul256_light",
+  ["hinterlands"] = "monochrome"
 }
 
 M.theme_file = vim.fn.expand "~/.config/omarchy/current/theme.name"
