@@ -43,7 +43,7 @@ function M.apply_theme()
   require("nvconfig").base46.theme = nvchad_theme
   require("base46").load_all_highlights()
 
-  require "plugin.after.transparency"
+  require "transparency"
 end
 
 return M
