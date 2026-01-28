@@ -20,7 +20,9 @@ M.theme_map = {
   ["bliss"] = "seoul256_light",
   ["hinterlands"] = "monochrome",
   ["waffle-cat"] = "melange",
-  ["latchdark"] = "obsidian-ember"
+  ["latchdark"] = "obsidian-ember",
+  ["mechanoonna"] = "melange",
+  ["rustleaf"] = "aylin",
 }
 
 M.theme_file = vim.fn.expand "~/.config/omarchy/current/theme.name"
