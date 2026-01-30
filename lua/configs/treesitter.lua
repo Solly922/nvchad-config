@@ -10,6 +10,9 @@ local options = {
     "jsdoc",
     "go",
     "gotmpl",
+    "gomod",
+    "gosum",
+    "gowork",
     "php",
   },
 

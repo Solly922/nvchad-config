@@ -23,6 +23,7 @@ M.theme_map = {
   ["latchdark"] = "obsidian-ember",
   ["mechanoonna"] = "melange",
   ["rustleaf"] = "aylin",
+  ["monolith"] = "aylin",
 }
 
 M.theme_file = vim.fn.expand "~/.config/omarchy/current/theme.name"
