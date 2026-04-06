@@ -1,5 +1,16 @@
 local defaults = require "nvchad.configs.lspconfig"
 
+local function ensure_mason_env()
+  if vim.env.MASON and vim.env.MASON ~= "" then
+    return
+  end
+
+  local ok, mason_settings = pcall(require, "mason.settings")
+  if ok and mason_settings.current and mason_settings.current.install_root_dir then
+    vim.env.MASON = mason_settings.current.install_root_dir
+  end
+end
+
 -- Helper function to check if we're in a Deno project
 local function is_deno_project(fname)
   -- Check for deno.json or deno.jsonc
@@ -15,6 +26,8 @@ local function is_deno_project(fname)
 
   return false
 end
+
+ensure_mason_env()
 
 require("typescript-tools").setup {
   on_attach = function(client, bufnr)
@@ -40,9 +53,6 @@ require("typescript-tools").setup {
     -- to include all supported code actions
     -- specify commands exposed as code_actions
     expose_as_code_action = {},
-    -- string|nil - specify a custom path to `tsserver.js` file, if this is nil or file under path
-    -- not exists then standard path resolution strategy is applied
-    tsserver_path = nil,
     -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
     -- (see 💅 `styled-components` support section)
     tsserver_plugins = {},
