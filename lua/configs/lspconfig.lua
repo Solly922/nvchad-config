@@ -49,11 +49,13 @@ local function find_eslint_root(bufnr)
       return false
     end
 
-    local result = vim.system({
-      "node",
-      "-e",
-      "require.resolve('eslint/package.json')",
-    }, { cwd = dir, text = true }):wait()
+    local result = vim
+      .system({
+        "node",
+        "-e",
+        "require.resolve('eslint/package.json')",
+      }, { cwd = dir, text = true })
+      :wait()
 
     return result.code == 0
   end
@@ -154,6 +156,18 @@ local servers = {
 
   gh_actions_ls = {
     workspace_required = true,
+  },
+
+  basedpyright = {
+    settings = {
+      basedpyright = {
+        analysis = {
+          autoSearchPaths = true,
+          diagnosticMode = "workspace",
+          useLibraryCodeForTypes = true,
+        },
+      },
+    },
   },
 }
 

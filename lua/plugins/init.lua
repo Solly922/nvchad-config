@@ -14,35 +14,6 @@ return {
   },
 
   {
-    "williamboman/mason.nvim",
-    options = {
-      ensure_installed = {
-        -- lua
-        "lua-language-server",
-        "stylua",
-
-        -- web dev
-        "html-lsp",
-        "cssls",
-        "eslint-lsp",
-        "eslint_d",
-        "prettier",
-        "prettierd",
-        "typescript-language-server",
-        "tailwindcss-language-server",
-        "rustywind",
-        "deno",
-
-        -- golang
-        "gofumpt",
-        "goimports",
-        "gopls",
-        "golangci-lint-langserver",
-      },
-    },
-  },
-
-  {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     opts = {},
