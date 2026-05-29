@@ -1,5 +1,12 @@
 return {
   {
+    "FelipeLema/cmp-async-path",
+    name = "cmp-async-path",
+    url = "https://github.com/FelipeLema/cmp-async-path.git",
+    optional = true,
+  },
+
+  {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- uncomment for format on save
     opts = require "configs.conform",
