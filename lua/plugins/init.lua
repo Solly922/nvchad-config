@@ -39,6 +39,7 @@ return {
       return require "configs.treesitter"
     end,
     config = function(_, opts)
+      opts.setup_query_compat()
       require("nvim-treesitter.configs").setup(opts)
     end,
   },

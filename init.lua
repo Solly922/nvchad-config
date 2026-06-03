@@ -13,6 +13,18 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require "configs.lazy"
 
+-- typescript-tools.nvim still calls the deprecated codelens.refresh API.
+-- Translate it to the current API until the plugin updates that call.
+do
+  local codelens = vim.lsp.codelens
+  if codelens and codelens.enable then
+    codelens.refresh = function(opts)
+      vim.validate("opts", opts, "table", true)
+      codelens.enable(true, { bufnr = opts and opts.bufnr })
+    end
+  end
+end
+
 -- load plugins
 require("lazy").setup({
   {
