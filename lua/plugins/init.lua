@@ -140,7 +140,7 @@ return {
     enabled = true,
     config = function()
       require("illuminate").configure {
-        providers = { "lsp", "treesitter", "regex" },
+        providers = { "lsp", "regex" },
         under_cursor = true,
         should_enable = function(_)
           return true
