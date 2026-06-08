@@ -69,6 +69,56 @@ local function get_react_formatters()
   end
 end
 
+local blackd_client = [=[
+import asyncio
+import sys
+
+from blackd.client import BlackDClient
+
+
+async def main():
+    source = sys.stdin.read()
+    formatted = await BlackDClient().format_code(source)
+    sys.stdout.write(formatted)
+
+
+asyncio.run(main())
+]=]
+
+local blackd_available = [=[
+import asyncio
+
+from blackd.client import BlackDClient
+
+
+async def main():
+    await BlackDClient().format_code("")
+
+
+asyncio.run(main())
+]=]
+
+local blackd_check_time = 0
+local blackd_check_available = false
+
+local function is_blackd_available(ctx)
+  local filename = ctx and ctx.filename
+  if filename and #vim.fs.find("pyproject.toml", { path = vim.fs.dirname(filename), upward = true }) > 0 then
+    return false
+  end
+
+  local now = vim.loop.now()
+  if now - blackd_check_time < 5000 then
+    return blackd_check_available
+  end
+
+  vim.fn.system({ "python3", "-c", blackd_available })
+  blackd_check_available = vim.v.shell_error == 0
+  blackd_check_time = now
+
+  return blackd_check_available
+end
+
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
@@ -78,6 +128,8 @@ local options = {
     typescript = get_js_formatters,
     javascriptreact = get_react_formatters,
     typescriptreact = get_react_formatters,
+
+    python = { "blackd", "black", stop_after_first = true },
 
     go = { "gofumpt", "goimports" },
   },
@@ -89,6 +141,13 @@ local options = {
     },
     prettier = {
       prepend_args = { "--single-attribute-per-line" },
+    },
+    blackd = {
+      command = "python3",
+      args = { "-c", blackd_client },
+      condition = function(_, ctx)
+        return is_blackd_available(ctx)
+      end,
     },
   },
 
