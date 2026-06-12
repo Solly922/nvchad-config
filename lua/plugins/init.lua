@@ -65,28 +65,30 @@ return {
   "leoluz/nvim-dap-go",
 
   -- AI
-  -- {
-  --   "github/copilot.vim",
-  --   cmd = "Copilot",
-  --   config = function()
-  --     require("configs.ghcopilot").config_vim()
-  --   end,
-  --   event = "BufEnter",
-  -- },
   {
-    "zbirenbaum/copilot.lua",
-    requires = {
-      "copilotlsp-nvim/copilot-lsp",
-      init = function()
-        vim.g.copilot_nes_debounce = 300
-      end,
-    },
+    "github/copilot.vim",
     cmd = "Copilot",
-    event = "BufEnter",
     config = function()
-      require("configs.zbirenbaum-copilot").setup()
+      require("configs.ghcopilot").config_vim()
     end,
+    event = "BufEnter",
   },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   dependencies = {
+  --     {
+  --       "copilotlsp-nvim/copilot-lsp",
+  --       init = function()
+  --         vim.g.copilot_nes_debounce = 300
+  --       end,
+  --     },
+  --   },
+  --   cmd = "Copilot",
+  --   event = "BufEnter",
+  --   config = function()
+  --     require("configs.zbirenbaum-copilot").setup()
+  --   end,
+  -- },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
