@@ -120,6 +120,10 @@ local function is_blackd_available(ctx)
 end
 
 local options = {
+  -- ESLint's cold start can take several seconds when loading a TypeScript project.
+  -- Share the budget between manual formatting and format-on-save.
+  default_format_opts = { timeout_ms = 10000 },
+
   formatters_by_ft = {
     lua = { "stylua" },
     css = { "prettierd", "prettier", stop_after_first = true },
@@ -153,7 +157,6 @@ local options = {
 
   format_on_save = {
     -- These options will be passed to conform.format()
-    timeout_ms = 500,
     lsp_fallback = true,
   },
 }
