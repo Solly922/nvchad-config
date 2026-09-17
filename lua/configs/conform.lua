@@ -1,5 +1,8 @@
--- Helper function to detect if ESLint is configured in the project
-local function has_eslint_config()
+-- Helper function to detect if ESLint is configured for the file being formatted.
+-- Resolved from the buffer's own directory upward, so a monorepo with nested
+-- projects (e.g. frontend/ without ESLint next to server/ with ESLint)
+-- classifies each file correctly no matter what Neovim's cwd is.
+local function has_eslint_config(bufnr)
   local config_files = {
     ".eslintrc",
     ".eslintrc.js",
@@ -10,10 +13,22 @@ local function has_eslint_config()
     "eslint.config.js",
     "eslint.config.mjs",
     "eslint.config.cjs",
+    "eslint.config.ts",
+    "eslint.config.mts",
+    "eslint.config.cts",
   }
 
+  -- Start from the file being formatted; fall back to cwd for unnamed buffers.
+  local start_dir = vim.fn.getcwd()
+  if bufnr and vim.api.nvim_buf_is_valid(bufnr) then
+    local name = vim.api.nvim_buf_get_name(bufnr)
+    if name ~= "" then
+      start_dir = vim.fs.dirname(name)
+    end
+  end
+
   -- Find root directory by looking for package.json or git root
-  local found = vim.fs.find({ "package.json", ".git" }, { upward = true })
+  local found = vim.fs.find({ "package.json", ".git" }, { path = start_dir, upward = true })
   if not found or #found == 0 then
     return false
   end
@@ -48,18 +63,19 @@ local function has_eslint_config()
 end
 
 -- Function to determine formatters for JS/TS files
-local function get_js_formatters()
-  if has_eslint_config() then
-    -- Try eslint_d first (faster), then eslint, then fall back to prettier
-    return { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true }
+local function get_js_formatters(bufnr)
+  if has_eslint_config(bufnr) then
+    -- Run ESLint fixes first, then Prettier for style. ESLint's recommended
+    -- sets carry no style rules, so ESLint alone leaves files unformatted.
+    return { "eslint_d", "prettierd" }
   else
     return { "prettierd", "prettier", stop_after_first = true }
   end
 end
 
 -- Function to determine formatters for React files
-local function get_react_formatters()
-  if has_eslint_config() then
+local function get_react_formatters(bufnr)
+  if has_eslint_config(bufnr) then
     -- Use ESLint for formatting/fixing, then rustywind for Tailwind classes
     -- return { { "eslint_d", "eslint", "prettierd", "prettier", stop_after_first = true }, "rustywind" }
     return { "eslint_d", "prettierd", "rustywind" }
